@@ -10,6 +10,7 @@ let
   inherit (lib) mkOption;
 in
 {
+  imports = [ wlib.modules.default ];
   options = {
     settings = mkOption {
       inherit (yamlFormat) type;
