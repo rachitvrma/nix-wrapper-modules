@@ -27,13 +27,10 @@ in
     };
     drv = {
       configYml = yamlFormat.generate "config.yml" config.settings;
-      passAsFile = [
-        "configYml"
-      ];
       buildPhase = ''
         runHook preBuild
         mkdir -p "${placeholder config.outputName}/gh-config"
-        cp "$(cat "$configYmlPath")" "${placeholder config.outputName}/gh-config/config.yml"
+        cp "$configYml" "${placeholder config.outputName}/gh-config/config.yml"
         runHook postBuild
       '';
     };
